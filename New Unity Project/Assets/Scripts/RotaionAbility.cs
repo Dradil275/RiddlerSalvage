@@ -13,12 +13,16 @@ public class RotaionAbility : MonoBehaviour
     RaycastHit hit;
     float maxDistance;
     bool isAbilty;
+    public GameObject Psl;
+    public GameObject Asl;
+    bool isProtectorLight;
+    bool isAngelLight;
     // Start is called before the first frame update
     void Start()
     {
         maxDistance = 30;
         isAbilty = true;
-       
+
     }
 
     // Update is called once per frame
@@ -36,18 +40,21 @@ public class RotaionAbility : MonoBehaviour
                     if (hit.collider.tag == "Protector")
                     {
                         Debug.Log("hit protector");
-                        hit.transform.Rotate(new Vector3(0, +94, 0));
+
+                        Protector.transform.Rotate(0,40, 0);
+
+
                     }
-                    if(hit.collider.tag == "Angel")
+                    if (hit.collider.tag == "Angel")
                     {
                         Debug.Log("Angel");
-                        hit.transform.Rotate(new Vector3(0, +105, 0));
+                        Angel.transform.Rotate(0, 30, 0);
                     }
-                    if(hit.collider.tag == "Skeleton")
+                    if (hit.collider.tag == "Skeleton")
                     {
-                        hit.transform.Rotate(new Vector3(0, +90, 0));
+                        Skeleton.transform.Rotate(0, +30, 0);
                     }
-                 
+
                 }
             }
             if (Input.GetMouseButtonDown(0))
@@ -59,20 +66,44 @@ public class RotaionAbility : MonoBehaviour
                     if (hit.collider.tag == "Protector")
                     {
                         Debug.Log("hit protector");
-                        hit.transform.Rotate(new Vector3(0, -94, 0));
+                        Protector.transform.Rotate(0, -40, 0);
                     }
                     if (hit.collider.tag == "Angel")
                     {
                         Debug.Log("Angel");
-                        hit.transform.Rotate(new Vector3(0, -105, 0));
+                        Angel.transform.Rotate(0, -30, 0);
                     }
                     if (hit.collider.tag == "Skeleton")
                     {
-                        hit.transform.Rotate(new Vector3(0, -90, 0));
+                        Skeleton.transform.Rotate(0, -30, 0);
                     }
                 }
             }
         }
 
+        // light conditions
+        if (Skeleton.transform.rotation.y != 0 && isProtectorLight == false)
+        {
+
+            Psl.SetActive(true);
+           
+        }
+        if(Skeleton.transform.rotation.y == 0)
+        {
+            Psl.SetActive(false);
+        }
+       
+      /*  if()
+        {
+            Debug.Log("ASL");
+            Asl.SetActive(true);
+            isProtectorLight = true;
+        }*/
+        if(isProtectorLight == true)
+        {
+            Psl.SetActive(false);
+        }
+
     }
 }
+ 
