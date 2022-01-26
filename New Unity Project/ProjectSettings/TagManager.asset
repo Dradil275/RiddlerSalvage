@@ -3,7 +3,17 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - color
+  - colorObject
+  - Angel
+  - Protector
+  - Women
+  - Skeleton
+  - First
+  - Second
+  - Third
+  - Fourth
   layers:
   - Default
   - TransparentFX
