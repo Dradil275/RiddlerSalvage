@@ -21,13 +21,21 @@ public class ColorAbility : MonoBehaviour
     bool isGreen;
     bool isYellow;
     bool isRed;
-    bool isAbilty;
+    public bool isAbilty;
+
+    //Health aid
+    public GameObject life;
+    private PlayerEngine int_life;
 
     void Start()
     {
         isAbilty = true;
         maxDistance = 30f;
         originalCrystalMat = WandCrystal.GetComponent<MeshRenderer>().material;
+
+        //Health aid
+        int_life = life.GetComponent<PlayerEngine>();
+        int_life.life = 5;
     }
 
 
@@ -68,24 +76,30 @@ public class ColorAbility : MonoBehaviour
             isGreen = true;
             
         }
-        else isGreen = false;
-
+        else
+        {
+            isGreen = false;
+        }
         if (SphereY.GetComponent<MeshRenderer>().material.color == Yellow.color)
         {
             isYellow = true;
             
         }
-        else isYellow = false;
-
+        else
+        {
+            isYellow = false;
+        }
         if (SphereR.GetComponent<MeshRenderer>().material.color == Red.color)
         {
             isRed = true;
            
         }
-        else isRed = false;
-
+        else
+        {
+            isRed = false;
+        }
         //if solved
-        if(isGreen == true && isYellow == true && isRed == true)
+        if (isGreen == true && isYellow == true && isRed == true)
         {
             Destroy(Door);
             WandCrystal.GetComponent<MeshRenderer>().material = originalCrystalMat;

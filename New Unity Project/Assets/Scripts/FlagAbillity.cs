@@ -21,18 +21,30 @@ public class FlagAbillity : MonoBehaviour
     bool isBlue;
     bool isWhite;
     bool isRed;
-    bool isAbilty;
+
+    //color abillity
+    public GameObject isAbillity;
+    private ColorAbility ca;
+
+    //Health aid
+    public GameObject life;
+    private PlayerEngine int_life;
 
     void Start()
     {
-        isAbilty = true;
+        ca = isAbillity.GetComponent<ColorAbility>();
         maxDistance = 30f;
         originalCrystalMat = WandCrystal.GetComponent<MeshRenderer>().material;
+
+        //Health aid
+        int_life = life.GetComponent<PlayerEngine>();
+        int_life.life = 5;
+
     }
 
     void Update()
     {
-        if (isAbilty)
+        if (ca.isAbilty == true)
         { //Flag ability (raycast)
             origin = Camera.GetComponent<Camera>().ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0));
             if (Input.GetMouseButtonDown(1))
@@ -65,26 +77,33 @@ public class FlagAbillity : MonoBehaviour
             {
                 isRed = true;
             }
-            else isRed = false;
+            else
+            {
+                isRed = false;
+            }
 
             if (stripW.GetComponent<MeshRenderer>().material.color == white.color)
             {
                 isWhite = true;
             }
-            else isWhite = false;
-
+            else
+            {
+                isWhite = false;
+            }
             if (stripB.GetComponent<MeshRenderer>().material.color == blue.color)
             {
                 isBlue = true;
             }
-            else isRed = false;
-
+            else
+            {
+                isBlue = false;
+            }
             //if solved
             if (isWhite == true && isBlue == true && isRed == true)
             {
                 Destroy(Door);
                 WandCrystal.GetComponent<MeshRenderer>().material = originalCrystalMat;
-                isAbilty = false;
+                ca.isAbilty = false;
             }
 
 

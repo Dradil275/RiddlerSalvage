@@ -240,6 +240,7 @@ GameObject:
   - component: {fileID: 44020365}
   - component: {fileID: 44020366}
   - component: {fileID: 44020367}
+  - component: {fileID: 44020368}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -347,6 +348,7 @@ MonoBehaviour:
   Ground:
     serializedVersion: 2
     m_Bits: 64
+  life: 5
 --- !u!143 &44020362
 CharacterController:
   m_ObjectHideFlags: 0
@@ -398,6 +400,7 @@ MonoBehaviour:
   SphereY: {fileID: 955296467}
   SphereR: {fileID: 1788994918}
   WandCrystal: {fileID: 8374286623941746939}
+  life: {fileID: 44020356}
 --- !u!114 &44020365
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -415,6 +418,8 @@ MonoBehaviour:
   Angel: {fileID: 2104662317}
   Girl: {fileID: 1548830993}
   Camera: {fileID: 963194225}
+  Psl: {fileID: 0}
+  Asl: {fileID: 0}
 --- !u!114 &44020366
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -434,6 +439,7 @@ MonoBehaviour:
   Camera: {fileID: 963194225}
   WandCrystal: {fileID: 0}
   door: {fileID: 2094794261}
+  life: {fileID: 44020356}
 --- !u!114 &44020367
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -455,6 +461,19 @@ MonoBehaviour:
   stripW: {fileID: 943441196}
   stripB: {fileID: 804610527}
   WandCrystal: {fileID: 8374286623941746939}
+  life: {fileID: 44020356}
+--- !u!114 &44020368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 44020356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f48ea226e4e8477b8b41e8a11389688, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &51029238
 GameObject:
   m_ObjectHideFlags: 0
@@ -9645,6 +9664,50 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1414080489}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1417181226
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1417181228}
+  - component: {fileID: 1417181227}
+  m_Layer: 0
+  m_Name: LoadScenesManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1417181227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1417181226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebb05c37d902c420b88514f578161bc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1417181228
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1417181226}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: -10.022278}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1422169559
 GameObject:
   m_ObjectHideFlags: 0

@@ -27,6 +27,13 @@ public class CodeAbillity : MonoBehaviour
 
     public GameObject door;
 
+    //Health aid
+    public GameObject life;
+    private PlayerEngine int_life;
+
+    //color abillity
+    public GameObject isAbillity;
+    private ColorAbility ca;
 
     void Start()
     {
@@ -37,6 +44,11 @@ public class CodeAbillity : MonoBehaviour
         isCorrect2 = false;
         isCorrect3 = false;
         isCorrect4 = false;
+
+        //Health aid
+        int_life = life.GetComponent<PlayerEngine>();
+        int_life.life = 5;
+        
 
     }
 
@@ -56,37 +68,30 @@ public class CodeAbillity : MonoBehaviour
                     isNoPick = false;
                     isCorrect1 = true;
                 }
-                else
-                    push.transform.GetComponent<MeshRenderer>().material.color = Color.red;
-
-
-
                 //second bottun
                 if ((push.collider.tag == "Second") && isCorrect1 == true)
                 {
                     push.transform.GetComponent<MeshRenderer>().material.color = Color.green;
                     isCorrect2 = true;
                 }
-
                 //third bottun
                 if ((push.collider.tag == "Third") && isCorrect2 == true)
                 {
                     push.transform.GetComponent<MeshRenderer>().material.color = Color.green;
                     isCorrect3 = true;
                 }
-
                 //fourth bottun
                 if ((push.collider.tag == "Fourth") && isCorrect3 == true)
                 {
                     push.transform.GetComponent<MeshRenderer>().material.color = Color.green;
                     isCorrect4 = true;
-
                 }
-
-
                 if (isCorrect1 && isCorrect2 && isCorrect3 && isCorrect4 == true)
                 {
                     Destroy(door);
+                    ca = isAbillity.GetComponent<ColorAbility>();
+                    ca.isAbilty = true;
+                      
                 }
             }
 

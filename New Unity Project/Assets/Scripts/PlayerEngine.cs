@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerEngine : MonoBehaviour
-{  // left and right
+{
+    [Header("Movment & Look Around & Gravity")]
+    // left and right
     float mouseX;
     float speed;
     //up and down 
@@ -23,7 +26,11 @@ public class PlayerEngine : MonoBehaviour
     public LayerMask Ground;
     float gravity;
     Vector3 velocity;
- 
+
+    [Header("Health")]
+    //health
+    public int life = 5;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -52,7 +59,18 @@ public class PlayerEngine : MonoBehaviour
         horizontal = Input.GetAxis("Horizontal") * movementSpeed * Time.deltaTime;
         vertical = Input.GetAxis("Vertical") * movementSpeed * Time.deltaTime;
         V = transform.forward * vertical + transform.right * horizontal;
+
+        //Sprint
+        if (Input.GetKey(KeyCode.Q))
+        {
+            movementSpeed = 16;
+        }
+        else
+        {
+            movementSpeed = 8;
+        }
         controller.Move(V);
+
         //gravity
         if (Physics.CheckSphere(checkground.position, radius, Ground) == true)
         {
@@ -74,6 +92,12 @@ public class PlayerEngine : MonoBehaviour
             velocity.y += 10;
         }
         controller.Move(velocity * Time.deltaTime);
+
+        //Health
+        if(life == 0)
+        {
+            SceneManager.LoadScene("GameOver");
+        }
     }
 
 }
