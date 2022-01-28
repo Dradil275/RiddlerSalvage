@@ -31,9 +31,7 @@ public class CodeAbillity : MonoBehaviour
     public GameObject life;
     private PlayerEngine int_life;
 
-    //color abillity
-    public GameObject isAbillity;
-    private ColorAbility ca;
+ 
 
     void Start()
     {
@@ -89,8 +87,8 @@ public class CodeAbillity : MonoBehaviour
                 if (isCorrect1 && isCorrect2 && isCorrect3 && isCorrect4 == true)
                 {
                     Destroy(door);
-                    ca = isAbillity.GetComponent<ColorAbility>();
-                    ca.isAbilty = true;
+                    
+                 
                       
                 }
             }

@@ -21,7 +21,7 @@ public class ColorAbility : MonoBehaviour
     bool isGreen;
     bool isYellow;
     bool isRed;
-    public bool isAbilty;
+    bool isSolved;
 
     //Health aid
     public GameObject life;
@@ -29,7 +29,7 @@ public class ColorAbility : MonoBehaviour
 
     void Start()
     {
-        isAbilty = true;
+        isSolved = false;
         maxDistance = 30f;
         originalCrystalMat = WandCrystal.GetComponent<MeshRenderer>().material;
 
@@ -41,8 +41,8 @@ public class ColorAbility : MonoBehaviour
 
     void Update()
     {
-        if (isAbilty)
-        { //color ability (raycast)
+      
+         //color ability (raycast)
             origin = Camera.GetComponent<Camera>().ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0));
             if (Input.GetMouseButtonDown(1))
             {
@@ -69,7 +69,7 @@ public class ColorAbility : MonoBehaviour
                     }
                 }
             }
-        }
+        
         // check if solcved
         if (SphereG.GetComponent<MeshRenderer>().material.color == Green.color)
         {
@@ -99,11 +99,11 @@ public class ColorAbility : MonoBehaviour
             isRed = false;
         }
         //if solved
-        if (isGreen == true && isYellow == true && isRed == true)
+        if (isGreen == true && isYellow == true && isRed == true && isSolved == false)
         {
             Destroy(Door);
             WandCrystal.GetComponent<MeshRenderer>().material = originalCrystalMat;
-            isAbilty = false;
+            isSolved = true;
         }
     }
 }

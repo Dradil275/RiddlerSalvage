@@ -17,17 +17,21 @@ public class RotaionAbility : MonoBehaviour
     public GameObject Asl;
     bool isProtectorLight;
     bool isAngelLight;
+    float ProtectorY;
+    int ProtectorFacing;
     // Start is called before the first frame update
     void Start()
     {
         maxDistance = 30;
         isAbilty = true;
-
+        isProtectorLight = false;
+        ProtectorFacing = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
+        ProtectorY = Protector.transform.rotation.y;
         origin = Camera.GetComponent<Camera>().ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0));
         if (isAbilty)
         {
@@ -42,7 +46,8 @@ public class RotaionAbility : MonoBehaviour
                         Debug.Log("hit protector");
 
                         Protector.transform.Rotate(0,40, 0);
-
+                        ProtectorFacing++;
+                        Debug.Log(ProtectorFacing);
 
                     }
                     if (hit.collider.tag == "Angel")
@@ -54,6 +59,7 @@ public class RotaionAbility : MonoBehaviour
                     {
                         Skeleton.transform.Rotate(0, +30, 0);
                     }
+                   
 
                 }
             }
@@ -67,6 +73,8 @@ public class RotaionAbility : MonoBehaviour
                     {
                         Debug.Log("hit protector");
                         Protector.transform.Rotate(0, -40, 0);
+                        ProtectorFacing--;
+                        Debug.Log(ProtectorFacing);
                     }
                     if (hit.collider.tag == "Angel")
                     {
@@ -86,22 +94,19 @@ public class RotaionAbility : MonoBehaviour
         {
 
             Psl.SetActive(true);
-           
+
         }
-        if(Skeleton.transform.rotation.y == 0)
-        {
-            Psl.SetActive(false);
-        }
-       
-      /*  if()
-        {
+
+
+        if (ProtectorFacing == -4 || ProtectorFacing == 5)
+        { 
             Debug.Log("ASL");
             Asl.SetActive(true);
             isProtectorLight = true;
-        }*/
+        }
         if(isProtectorLight == true)
         {
-            Psl.SetActive(false);
+           // Psl.SetActive(false);
         }
 
     }
