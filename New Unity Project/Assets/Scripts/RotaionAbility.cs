@@ -9,6 +9,7 @@ public class RotaionAbility : MonoBehaviour
     public GameObject Angel;
     public GameObject Girl;
     public GameObject Camera;
+    public GameObject Door3;
     Vector3 origin;
     RaycastHit hit;
     float maxDistance;
@@ -19,6 +20,8 @@ public class RotaionAbility : MonoBehaviour
     bool isAngelLight;
     float ProtectorY;
     int ProtectorFacing;
+    int SkeletonFacing;
+    int AngelFacing;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +29,8 @@ public class RotaionAbility : MonoBehaviour
         isAbilty = true;
         isProtectorLight = false;
         ProtectorFacing = 0;
+        SkeletonFacing = 0;
+        AngelFacing = 0;
     }
 
     // Update is called once per frame
@@ -54,10 +59,12 @@ public class RotaionAbility : MonoBehaviour
                     {
                         Debug.Log("Angel");
                         Angel.transform.Rotate(0, 30, 0);
+                        AngelFacing++;
                     }
                     if (hit.collider.tag == "Skeleton")
                     {
                         Skeleton.transform.Rotate(0, +30, 0);
+                        SkeletonFacing++;
                     }
                    
 
@@ -71,43 +78,58 @@ public class RotaionAbility : MonoBehaviour
 
                     if (hit.collider.tag == "Protector")
                     {
-                        Debug.Log("hit protector");
                         Protector.transform.Rotate(0, -40, 0);
                         ProtectorFacing--;
-                        Debug.Log(ProtectorFacing);
                     }
                     if (hit.collider.tag == "Angel")
                     {
-                        Debug.Log("Angel");
                         Angel.transform.Rotate(0, -30, 0);
+                        AngelFacing--;
                     }
                     if (hit.collider.tag == "Skeleton")
                     {
                         Skeleton.transform.Rotate(0, -30, 0);
+                        SkeletonFacing--;
                     }
                 }
             }
         }
-
+        //facing restorer
+        if(SkeletonFacing >= 12 || SkeletonFacing <= -12)
+        {
+            SkeletonFacing = 0;
+        }
+        if(ProtectorFacing >= 9 && ProtectorFacing <= -9)
+        {
+            ProtectorFacing = 0;
+        }
+        if(AngelFacing >= 12 || AngelFacing <= -12)
+        {
+            AngelFacing = 0;
+        }
+        
         // light conditions
-        if (Skeleton.transform.rotation.y != 0 && isProtectorLight == false)
+        if (Skeleton.transform.rotation.y != 0)
         {
-
             Psl.SetActive(true);
-
         }
-
-
-        if (ProtectorFacing == -4 || ProtectorFacing == 5)
-        { 
-            Debug.Log("ASL");
-            Asl.SetActive(true);
-            isProtectorLight = true;
-        }
-        if(isProtectorLight == true)
+        if(SkeletonFacing == 0)
         {
-           // Psl.SetActive(false);
+            Psl.SetActive(false);
         }
+        if (ProtectorFacing == -4 || ProtectorFacing == 5 &&  SkeletonFacing != 0)
+        {
+            Asl.SetActive(true);
+        }
+        else Asl.SetActive(false);
+
+        //win con
+        if (AngelFacing == -7 || AngelFacing == 5)
+        {
+            Destroy(Door3);
+        }
+       
+
 
     }
 }
