@@ -28,10 +28,13 @@ public class RotaionAbility : MonoBehaviour
     public AudioClip TibettenGong;
     public AudioClip MoveStatueRight;
     public AudioClip MoveStatueLeft;
+    public AudioClip LightSwitch;
     bool isWin;
+    int Pswitch;
     // Start is called before the first frame update
     void Start()
     {
+        Pswitch = 2;
         isWin = false;
         maxDistance = 30;
         isAbilty = true;
@@ -49,7 +52,7 @@ public class RotaionAbility : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(1))
             {
-                
+
                 Debug.DrawRay(origin, Camera.transform.forward * maxDistance);
                 if (Physics.Raycast(origin, Camera.transform.forward, out hit, maxDistance))
                 {
@@ -58,7 +61,7 @@ public class RotaionAbility : MonoBehaviour
                     {
                         audioSource.PlayOneShot(MoveStatueRight, 0.5f);
                         Debug.Log("hit protector");
-                        Protector.transform.Rotate(0,40,0);
+                        Protector.transform.Rotate(0, 40, 0);
                         ProtectorFacing++;
                         Debug.Log(ProtectorFacing);
 
@@ -76,7 +79,7 @@ public class RotaionAbility : MonoBehaviour
                         Skeleton.transform.Rotate(0, +30, 0);
                         SkeletonFacing++;
                     }
-                   
+
 
                 }
             }
@@ -85,7 +88,7 @@ public class RotaionAbility : MonoBehaviour
                 Debug.DrawRay(origin, Camera.transform.forward * maxDistance);
                 if (Physics.Raycast(origin, Camera.transform.forward, out hit, maxDistance))
                 {
-                    
+
                     if (hit.collider.tag == "Protector")
                     {
                         audioSource.PlayOneShot(MoveStatueLeft, 0.5f);
@@ -108,45 +111,60 @@ public class RotaionAbility : MonoBehaviour
             }
         }
         //facing restorer
-        if(SkeletonFacing >= 12 || SkeletonFacing <= -12)
+        if (SkeletonFacing >= 12 || SkeletonFacing <= -12)
         {
             SkeletonFacing = 0;
         }
-        if(ProtectorFacing >= 9 && ProtectorFacing <= -9)
+        if (ProtectorFacing >= 9 && ProtectorFacing <= -9)
         {
             ProtectorFacing = 0;
         }
-        if(AngelFacing >= 12 || AngelFacing <= -12)
+        if (AngelFacing >= 12 || AngelFacing <= -12)
         {
             AngelFacing = 0;
         }
-        
+
         // light conditions
-        if (Skeleton.transform.rotation.y != 0)
+        if (SkeletonFacing != 0)
         {
+            Debug.Log("1");
+            if (Pswitch % 2 == 0)
+            {
+                audioSource.PlayOneShot(LightSwitch);
+                Pswitch++;
+            }
             Psl.SetActive(true);
+
         }
-        if(SkeletonFacing == 0)
+        if (SkeletonFacing == 0)  
         {
+            Debug.Log("2");
+            if (Pswitch % 2 == 1)
+            {
+                audioSource.PlayOneShot(LightSwitch);
+                Pswitch++;
+            }
             Psl.SetActive(false);
         }
-        if (ProtectorFacing == -4 || ProtectorFacing == 5 &&  SkeletonFacing != 0)
+        if (ProtectorFacing == -4 || ProtectorFacing == 5 && SkeletonFacing != 0)
         {
+            audioSource.PlayOneShot(LightSwitch);
             Asl.SetActive(true);
-         
+
         }
         else Asl.SetActive(false);
 
         //win con
         if ((AngelFacing == -7 || AngelFacing == 5) && Asl.activeSelf == true)
         {
-            if(isWin == false) audioSource.PlayOneShot(TibettenGong);
+            if (isWin == false) audioSource.PlayOneShot(TibettenGong);
             isWin = true;
             Destroy(Door3, 0.27f);
         }
+
        
 
-
     }
+
 }
  
