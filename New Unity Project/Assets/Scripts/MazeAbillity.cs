@@ -21,6 +21,10 @@ public class MazeAbillity : MonoBehaviour
     public GameObject gizmo3;
     public GameObject gizmo1;
 
+    //sound
+    public AudioSource audioSource;
+    public AudioClip Teleport;
+
     void Start()
     {
        
@@ -44,25 +48,30 @@ public class MazeAbillity : MonoBehaviour
         
         if(other.gameObject.tag == "PortalWorng")
         {
+            audioSource.PlayOneShot(Teleport, 0.7f);
             transform.position = startPos.transform.position;
         }
         if ((other.gameObject.tag == "PortalEnterW") && isFar == true)
         {
+            audioSource.PlayOneShot(Teleport, 0.7f);
             transform.position = startPos.transform.position;
         }
 
         if (other.gameObject.tag == "PortalC1")
         {
+            audioSource.PlayOneShot(Teleport, 0.7f);
             transform.position = room2Enter.transform.position;
         }
 
         if (other.gameObject.tag == "PortalC2")
         {
+            audioSource.PlayOneShot(Teleport, 0.7f);
             transform.position = room3Enter.transform.position;
         }
 
         if (other.gameObject.tag == "PortalC3")
         {
+            audioSource.PlayOneShot(Teleport, 0.7f);
             transform.position = room1Enter.transform.position;
         }
 

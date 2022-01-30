@@ -4,30 +4,37 @@ using UnityEngine;
 
 public class RotaionAbility : MonoBehaviour
 {
+    //objects
     public GameObject Skeleton;
     public GameObject Protector;
     public GameObject Angel;
     public GameObject Girl;
     public GameObject Camera;
     public GameObject Door3;
+    //Ray Cast
     Vector3 origin;
     RaycastHit hit;
     float maxDistance;
     bool isAbilty;
     public GameObject Psl;
     public GameObject Asl;
-    bool isProtectorLight;
-    bool isAngelLight;
     float ProtectorY;
+    //facing (Rotaion Alternative)
     int ProtectorFacing;
     int SkeletonFacing;
     int AngelFacing;
+    //sound
+    public AudioSource audioSource;
+    public AudioClip TibettenGong;
+    public AudioClip MoveStatueRight;
+    public AudioClip MoveStatueLeft;
+    bool isWin;
     // Start is called before the first frame update
     void Start()
     {
+        isWin = false;
         maxDistance = 30;
         isAbilty = true;
-        isProtectorLight = false;
         ProtectorFacing = 0;
         SkeletonFacing = 0;
         AngelFacing = 0;
@@ -42,27 +49,30 @@ public class RotaionAbility : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(1))
             {
+                
                 Debug.DrawRay(origin, Camera.transform.forward * maxDistance);
                 if (Physics.Raycast(origin, Camera.transform.forward, out hit, maxDistance))
                 {
 
                     if (hit.collider.tag == "Protector")
                     {
+                        audioSource.PlayOneShot(MoveStatueRight, 0.5f);
                         Debug.Log("hit protector");
-
-                        Protector.transform.Rotate(0,40, 0);
+                        Protector.transform.Rotate(0,40,0);
                         ProtectorFacing++;
                         Debug.Log(ProtectorFacing);
 
                     }
                     if (hit.collider.tag == "Angel")
                     {
+                        audioSource.PlayOneShot(MoveStatueRight, 0.5f);
                         Debug.Log("Angel");
                         Angel.transform.Rotate(0, 30, 0);
                         AngelFacing++;
                     }
                     if (hit.collider.tag == "Skeleton")
                     {
+                        audioSource.PlayOneShot(MoveStatueRight, 0.5f);
                         Skeleton.transform.Rotate(0, +30, 0);
                         SkeletonFacing++;
                     }
@@ -75,19 +85,22 @@ public class RotaionAbility : MonoBehaviour
                 Debug.DrawRay(origin, Camera.transform.forward * maxDistance);
                 if (Physics.Raycast(origin, Camera.transform.forward, out hit, maxDistance))
                 {
-
+                    
                     if (hit.collider.tag == "Protector")
                     {
+                        audioSource.PlayOneShot(MoveStatueLeft, 0.5f);
                         Protector.transform.Rotate(0, -40, 0);
                         ProtectorFacing--;
                     }
                     if (hit.collider.tag == "Angel")
                     {
+                        audioSource.PlayOneShot(MoveStatueLeft, 0.5f);
                         Angel.transform.Rotate(0, -30, 0);
                         AngelFacing--;
                     }
                     if (hit.collider.tag == "Skeleton")
                     {
+                        audioSource.PlayOneShot(MoveStatueLeft, 0.5f);
                         Skeleton.transform.Rotate(0, -30, 0);
                         SkeletonFacing--;
                     }
@@ -120,13 +133,16 @@ public class RotaionAbility : MonoBehaviour
         if (ProtectorFacing == -4 || ProtectorFacing == 5 &&  SkeletonFacing != 0)
         {
             Asl.SetActive(true);
+         
         }
         else Asl.SetActive(false);
 
         //win con
-        if (AngelFacing == -7 || AngelFacing == 5)
+        if ((AngelFacing == -7 || AngelFacing == 5) && Asl.activeSelf == true)
         {
-            Destroy(Door3);
+            if(isWin == false) audioSource.PlayOneShot(TibettenGong);
+            isWin = true;
+            Destroy(Door3, 0.27f);
         }
        
 

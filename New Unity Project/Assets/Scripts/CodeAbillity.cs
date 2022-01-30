@@ -23,6 +23,8 @@ public class CodeAbillity : MonoBehaviour
     bool isCorrect2;
     bool isCorrect3;
     bool isCorrect4;
+    bool isWin;
+    bool isSound;
 
 
     public GameObject door;
@@ -31,12 +33,16 @@ public class CodeAbillity : MonoBehaviour
     public GameObject life;
     private PlayerEngine int_life;
 
- 
+    //Sound
+    public AudioSource audioSource;
+    public AudioClip Correct;
+    public AudioClip Beep;
+
 
     void Start()
     {
         maxDistance = 10f;
-
+        isWin = false;
         isNoPick = true;
         isCorrect1 = false;
         isCorrect2 = false;
@@ -62,6 +68,7 @@ public class CodeAbillity : MonoBehaviour
                 //first botton
                 if ((push.collider.tag == "First") && isNoPick == true)
                 {
+                    audioSource.PlayOneShot(Beep);
                     push.transform.GetComponent<MeshRenderer>().material.color = Color.green;
                     isNoPick = false;
                     isCorrect1 = true;
@@ -69,30 +76,36 @@ public class CodeAbillity : MonoBehaviour
                 //second bottun
                 if ((push.collider.tag == "Second") && isCorrect1 == true)
                 {
+                    audioSource.PlayOneShot(Beep);
                     push.transform.GetComponent<MeshRenderer>().material.color = Color.green;
                     isCorrect2 = true;
                 }
                 //third bottun
                 if ((push.collider.tag == "Third") && isCorrect2 == true)
                 {
+                    audioSource.PlayOneShot(Beep);
                     push.transform.GetComponent<MeshRenderer>().material.color = Color.green;
                     isCorrect3 = true;
                 }
                 //fourth bottun
                 if ((push.collider.tag == "Fourth") && isCorrect3 == true)
                 {
+                    audioSource.PlayOneShot(Beep);
                     push.transform.GetComponent<MeshRenderer>().material.color = Color.green;
                     isCorrect4 = true;
                 }
-                if (isCorrect1 && isCorrect2 && isCorrect3 && isCorrect4 == true)
+               if (isCorrect1 && isCorrect2 && isCorrect3 && isCorrect4 == true && isWin == false)
                 {
-                    Destroy(door);
                     
-                 
-                      
+                    if(isWin == false) audioSource.PlayOneShot(Correct);
+                    isWin = true;
+                    Destroy(door, 0.2f);
                 }
             }
 
         }
+    
     }
+
+
 }

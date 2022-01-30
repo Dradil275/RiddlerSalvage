@@ -22,6 +22,11 @@ public class ColorAbility : MonoBehaviour
     bool isYellow;
     bool isRed;
     bool isSolved;
+    //sound 
+    public AudioClip Natarz6;
+    public AudioClip Natarz7;
+    public AudioClip TwinBells;
+    public AudioSource audioSource;
 
     //Health aid
     public GameObject life;
@@ -52,8 +57,10 @@ public class ColorAbility : MonoBehaviour
 
                     if (hit.collider.tag == "color")
                     {
-                        newMaterial = hit.transform.GetComponent<MeshRenderer>().material;
-                        WandCrystal.GetComponent<MeshRenderer>().material = newMaterial;
+                        audioSource.PlayOneShot(Natarz6, 0.7f);
+                        Invoke("GetMaterial", 0.23f);
+               
+                       
                     }
                 }
             }
@@ -65,7 +72,8 @@ public class ColorAbility : MonoBehaviour
 
                     if (hit.collider.tag == "colorObject")
                     {
-                        hit.transform.GetComponent<MeshRenderer>().material = newMaterial;
+                        audioSource.PlayOneShot(Natarz7,0.7f);
+                        Invoke("SetMaterial", 0.23f);
                     }
                 }
             }
@@ -101,9 +109,22 @@ public class ColorAbility : MonoBehaviour
         //if solved
         if (isGreen == true && isYellow == true && isRed == true && isSolved == false)
         {
+            audioSource.PlayOneShot(TwinBells);
             Destroy(Door);
             WandCrystal.GetComponent<MeshRenderer>().material = originalCrystalMat;
             isSolved = true;
         }
+       
+     
+    }
+    //methods
+    public void GetMaterial()
+    {
+        newMaterial = hit.transform.GetComponent<MeshRenderer>().material;
+        WandCrystal.GetComponent<MeshRenderer>().material = newMaterial;
+    }
+    public void SetMaterial()
+    {
+        hit.transform.GetComponent<MeshRenderer>().material = newMaterial;
     }
 }
