@@ -103,7 +103,7 @@ public class RotaionAbility : MonoBehaviour
                     }
                     if (hit.collider.tag == "Skeleton")
                     {
-                        audioSource.PlayOneShot(MoveStatueLeft, 0.5f);
+                        audioSource.PlayOneShot(MoveStatueLeft, 0.5f);d
                         Skeleton.transform.Rotate(0, -30, 0);
                         SkeletonFacing--;
                     }
