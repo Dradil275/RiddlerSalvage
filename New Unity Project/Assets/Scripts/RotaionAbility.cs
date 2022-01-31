@@ -31,6 +31,7 @@ public class RotaionAbility : MonoBehaviour
     public AudioClip LightSwitch;
     bool isWin;
     int Pswitch;
+    int Aswitch;
     // Start is called before the first frame update
     void Start()
     {
@@ -103,7 +104,7 @@ public class RotaionAbility : MonoBehaviour
                     }
                     if (hit.collider.tag == "Skeleton")
                     {
-                        audioSource.PlayOneShot(MoveStatueLeft, 0.5f);d
+                        audioSource.PlayOneShot(MoveStatueLeft, 0.5f);
                         Skeleton.transform.Rotate(0, -30, 0);
                         SkeletonFacing--;
                     }
@@ -127,7 +128,7 @@ public class RotaionAbility : MonoBehaviour
         // light conditions
         if (SkeletonFacing != 0)
         {
-            Debug.Log("1");
+            
             if (Pswitch % 2 == 0)
             {
                 audioSource.PlayOneShot(LightSwitch);
@@ -138,7 +139,7 @@ public class RotaionAbility : MonoBehaviour
         }
         if (SkeletonFacing == 0)  
         {
-            Debug.Log("2");
+           
             if (Pswitch % 2 == 1)
             {
                 audioSource.PlayOneShot(LightSwitch);
@@ -148,11 +149,23 @@ public class RotaionAbility : MonoBehaviour
         }
         if (ProtectorFacing == -4 || ProtectorFacing == 5 && SkeletonFacing != 0)
         {
-            audioSource.PlayOneShot(LightSwitch);
-            Asl.SetActive(true);
+            if (Aswitch % 2 == 0)
+            {
+                audioSource.PlayOneShot(LightSwitch);
+                Aswitch++;
+            }
+                Asl.SetActive(true);
 
-        }
-        else Asl.SetActive(false);
+            }
+            else
+            {
+                if (Aswitch % 2 == 1)
+                {
+                    audioSource.PlayOneShot(LightSwitch);
+                    Aswitch++;
+                }
+                Asl.SetActive(false);
+            }
 
         //win con
         if ((AngelFacing == -7 || AngelFacing == 5) && Asl.activeSelf == true)
