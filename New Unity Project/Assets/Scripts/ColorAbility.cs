@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ColorAbility : MonoBehaviour
 {
@@ -62,6 +63,7 @@ public class ColorAbility : MonoBehaviour
                
                        
                     }
+                    
                 }
             }
             if (Input.GetMouseButtonDown(0))
@@ -75,6 +77,12 @@ public class ColorAbility : MonoBehaviour
                         audioSource.PlayOneShot(Natarz7,0.7f);
                         Invoke("SetMaterial", 0.23f);
                     }
+                    if (hit.collider.tag == "FinalButton")
+                    {
+                    SceneManager.LoadScene("GameOver");
+                    
+                    }
+
                 }
             }
         

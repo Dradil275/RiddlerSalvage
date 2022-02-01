@@ -22,6 +22,10 @@ TagManager:
   - PortalEnter1
   - PortalWorng
   - PortalEnterW
+  - GoBack
+  - DoorClose
+  - CloseToEnd
+  - FinalButton
   layers:
   - Default
   - TransparentFX
