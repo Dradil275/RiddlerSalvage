@@ -35,6 +35,7 @@ public class FlagAbillity : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip Victory;
     bool isWin;
+
     void Start()
     {
         isWin = false;

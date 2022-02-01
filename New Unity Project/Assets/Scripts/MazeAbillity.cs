@@ -19,6 +19,9 @@ public class MazeAbillity : MonoBehaviour
     //sound
     public AudioSource audioSource;
     public AudioClip Teleport;
+    public AudioClip TwinBells;
+    public AudioClip bars;
+    public AudioClip wandGone;
 
     //other
     public GameObject doorC;
@@ -78,11 +81,15 @@ public class MazeAbillity : MonoBehaviour
             transform.position = room1Enter.transform.position;
             isInside = true;
             Destroy(doorEnd);
+            audioSource.PlayOneShot(TwinBells);
+
         }
         if (other.gameObject.tag == "DoorClose")
         {
             Instantiate(doorC, posDoor, doorC.transform.rotation);
             Destroy(other.gameObject);
+            audioSource.PlayOneShot(bars);
+            audioSource.PlayOneShot(wandGone);
             Destroy(wand);
         }
         if (other.gameObject.tag == "CloseToEnd")
