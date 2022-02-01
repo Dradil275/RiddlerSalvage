@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class ColorAbility : MonoBehaviour
 {
     public GameObject Camera;
+    public GameObject Health;
     Vector3 origin;
     RaycastHit hit;
     float maxDistance;
@@ -63,6 +64,7 @@ public class ColorAbility : MonoBehaviour
                
                        
                     }
+             
                     
                 }
             }
@@ -77,7 +79,20 @@ public class ColorAbility : MonoBehaviour
                         audioSource.PlayOneShot(Natarz7,0.7f);
                         Invoke("SetMaterial", 0.23f);
                     }
-                    if (hit.collider.tag == "FinalButton")
+                    if (hit.collider.tag == "Button")
+                   {
+
+                    if (isGreen == true && isYellow == true && isRed == true && isSolved == false)
+                    {
+                        audioSource.PlayOneShot(TwinBells);
+                        Destroy(Door);
+                        WandCrystal.GetComponent<MeshRenderer>().material = originalCrystalMat;
+                        isSolved = true;
+                    }
+                    else Health.GetComponent<Playerhealth>().TakeDamage();
+                    
+                }
+                if (hit.collider.tag == "FinalButton")
                     {
                     SceneManager.LoadScene("GameOver");
                     
@@ -115,14 +130,16 @@ public class ColorAbility : MonoBehaviour
             isRed = false;
         }
         //if solved
-        if (isGreen == true && isYellow == true && isRed == true && isSolved == false)
+
+      
+ /*       if (isGreen == true && isYellow == true && isRed == true && isSolved == false)
         {
             audioSource.PlayOneShot(TwinBells);
             Destroy(Door);
             WandCrystal.GetComponent<MeshRenderer>().material = originalCrystalMat;
             isSolved = true;
         }
-       
+       */
      
     }
     //methods

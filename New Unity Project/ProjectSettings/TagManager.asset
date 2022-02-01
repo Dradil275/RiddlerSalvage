@@ -26,6 +26,10 @@ TagManager:
   - DoorClose
   - CloseToEnd
   - FinalButton
+  - Button
+  - Button2
+  - Button3
+  - Button4
   layers:
   - Default
   - TransparentFX

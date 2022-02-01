@@ -12,6 +12,9 @@ public class Playerhealth : MonoBehaviour
     [SerializeField] private int Damage;
     [SerializeField] private int HalfDamage;
 
+    //sound
+    public AudioSource audioSource;
+    public AudioClip Hurt;
 
     public void TakeDamage()
     {
@@ -22,6 +25,7 @@ public class Playerhealth : MonoBehaviour
     public void UpdateHealth()
     {
         healthImage.fillAmount = playerHealth / maxHealth;
+        audioSource.PlayOneShot(Hurt, 0.8f);
     }
     public void TakeHalfDamage()
     {
