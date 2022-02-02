@@ -147,7 +147,7 @@ public class RotaionAbility : MonoBehaviour
             }
             Psl.SetActive(false);
         }
-        if (ProtectorFacing == -4 || ProtectorFacing == 5 && SkeletonFacing != 0)
+        if ((ProtectorFacing == -4 || ProtectorFacing == 5) && SkeletonFacing != 0)
         {
             if (Aswitch % 2 == 0)
             {

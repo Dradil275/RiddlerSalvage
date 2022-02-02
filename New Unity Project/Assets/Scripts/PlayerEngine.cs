@@ -64,7 +64,7 @@ public class PlayerEngine : MonoBehaviour
         V = transform.forward * vertical + transform.right * horizontal;
 
         //Sprint
-        if (Input.GetKey(KeyCode.Q))
+        if (Input.GetKey(KeyCode.LeftShift))
         {
             movementSpeed = 16;
         }

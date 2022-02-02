@@ -94,8 +94,9 @@ public class FlagAbillity : MonoBehaviour
                         WandCrystal.GetComponent<MeshRenderer>().material = originalCrystalMat;
 
                     }
+                    else Health.GetComponent<Playerhealth>().TakeDamage();
                 }
-                else Health.GetComponent<Playerhealth>().TakeDamage();
+               
         
             }
 

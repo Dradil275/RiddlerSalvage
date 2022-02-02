@@ -11,6 +11,7 @@ public class ColorAbility : MonoBehaviour
     RaycastHit hit;
     float maxDistance;
     Material newMaterial;
+    public Material Grey;
     public GameObject Door;
     public Material Green;
     public Material Yellow;
@@ -87,6 +88,7 @@ public class ColorAbility : MonoBehaviour
                         audioSource.PlayOneShot(TwinBells);
                         Destroy(Door);
                         WandCrystal.GetComponent<MeshRenderer>().material = originalCrystalMat;
+                        newMaterial = Grey;
                         isSolved = true;
                     }
                     else Health.GetComponent<Playerhealth>().TakeDamage();
