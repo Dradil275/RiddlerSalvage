@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class SceneManeger : MonoBehaviour
 {
+ 
     // Start is called before the first frame update
     void Start()
     {
@@ -21,7 +22,9 @@ public class SceneManeger : MonoBehaviour
     {
         if(name == "START")
         {
+           
             SceneManager.LoadScene("Main");
+            
         }
     }
     public void ExitGame(string name)
@@ -31,4 +34,35 @@ public class SceneManeger : MonoBehaviour
             Application.Quit();
         }
     }
+    public void Instructions(string name)
+    {
+        if(name == "MANUAL")
+        {
+            SceneManager.LoadScene("Manual");
+        }
+    } 
+    public void About(string name)
+    {
+        if(name == "ABOUT")
+        {
+            SceneManager.LoadScene("About");
+        }
+    } 
+    public void BackToMenu(string name)
+    {
+        if(name == "BACK")
+        {
+          
+            SceneManager.LoadScene("MainMenu");
+        }
+    }
+    public void Story(string name)
+    {
+        if (name == "STORY")
+        {
+
+            SceneManager.LoadScene("Story");
+        }
+    }
+
 }

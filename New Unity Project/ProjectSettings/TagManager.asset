@@ -30,6 +30,8 @@ TagManager:
   - Button2
   - Button3
   - Button4
+  - Reset
+  - Music
   layers:
   - Default
   - TransparentFX

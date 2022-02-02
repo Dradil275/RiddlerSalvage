@@ -9,6 +9,8 @@ public class CodeAbillity : MonoBehaviour
     public GameObject second;
     public GameObject third;
     public GameObject fourth;
+    //health
+    public GameObject Health;
 
     //raycast
     RaycastHit push;
@@ -17,16 +19,17 @@ public class CodeAbillity : MonoBehaviour
     Vector3 origin;
     public GameObject WandCrystal;
 
+    // Health
+  
 
     bool isNoPick;
-    bool isCorrect1;
-    bool isCorrect2;
-    bool isCorrect3;
-    bool isCorrect4;
     bool isWin;
     bool isSound;
     bool isCoding;
 
+    string i;
+    string CodeAnswer;
+    
 
     public GameObject door;
 
@@ -36,22 +39,23 @@ public class CodeAbillity : MonoBehaviour
     public AudioClip Correct;
     public AudioClip Beep;
     public AudioClip wrong;
-
+    public AudioClip fuck;
 
     void Start()
     {
+        isCoding = true;
+        CodeAnswer = null;
         maxDistance = 10f;
         isWin = false;
         isNoPick = true;
-        isCorrect1 = false;
-        isCorrect2 = false;
-        isCorrect3 = false;
-        isCorrect4 = false;
     }
 
     void Update()
     {
-
+        if(Input.GetKeyDown(KeyCode.F))
+        {
+            audioSource.PlayOneShot(fuck);
+        }
         origin = Camera.GetComponent<Camera>().ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0));
         if (Input.GetMouseButtonDown(0))
         {
@@ -59,29 +63,34 @@ public class CodeAbillity : MonoBehaviour
             if (Physics.Raycast(origin, Camera.transform.forward, out push, maxDistance))
             {
                 //first botton
-                if ((push.collider.tag == "First") && isNoPick == true)
+                if ((push.collider.tag == "First") && isNoPick == true && isCoding == true)
                 {
+                    Getnumbers("1");
                     isNoPick = false;
-                    isCorrect1 = true;
+                   
                 }
                 //second bottun
-                if ((push.collider.tag == "Second") && isCorrect1 == true)
+                if ((push.collider.tag == "Second")  && isCoding == true)
                 {
-                    isCorrect2 = true;
+                    Getnumbers("3");
+                    
                 }
                 //third bottun
-                if ((push.collider.tag == "Third") && isCorrect2 == true)
+                if ((push.collider.tag == "Third")  && isCoding == true)
                 {
-                    isCorrect3 = true;
+                    Getnumbers("4");
+                    
                 }
                 //fourth bottun
-                if ((push.collider.tag == "Fourth") && isCorrect3 == true)
+                if ((push.collider.tag == "Fourth")  && isCoding == true)
                 {
-                    isCorrect4 = true;
+                    Getnumbers("2");
+                    
                 }
                 
-               if (isCorrect1 && isCorrect2 && isCorrect3 && isCorrect4 == true)
+               if (CodeAnswer == "1342" && isCoding == true)
                {
+                    Debug.Log("code correct");
                     isWin = true;
                }
                 if (push.collider.tag == "Button2" && isWin == true)
@@ -92,19 +101,34 @@ public class CodeAbillity : MonoBehaviour
                 if (push.collider.tag == "Button2" && isWin == false)
                 {
                     audioSource.PlayOneShot(wrong);
+                    Health.GetComponent<Playerhealth>().TakeDamage();
+                    Health.GetComponent<Playerhealth>().HP--;
                     isNoPick = true;
                 }
                 if ((push.collider.tag == "First") || (push.collider.tag == "Second") || (push.collider.tag == "Third") || (push.collider.tag == "Fourth"))
                 {
                     audioSource.PlayOneShot(Beep);
                 }
+                if(push.collider.tag == "Reset")
+                {
+                    audioSource.PlayOneShot(Beep);
+                    Debug.Log("reset");
+                    CodeAnswer = null;
+                    isCoding = true;
+                    isNoPick = true;
+                }
 
-
+            }
+            if(CodeAnswer.Length == 4)
+            {
+                isCoding = false;
             }
 
         }
-    
+
     }
-
-
+    public void Getnumbers(string i)
+    {
+            CodeAnswer += i;
+    }
 }

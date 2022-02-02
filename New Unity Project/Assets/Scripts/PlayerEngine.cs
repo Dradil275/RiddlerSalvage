@@ -30,13 +30,13 @@ public class PlayerEngine : MonoBehaviour
     
 
 
-    [Header("Health")]
-    //health
-    public int life = 5;
+   
+   
 
     // Start is called before the first frame update
     void Start()
     {
+       
         speed = 100;
         cameraX = 0;
         movementSpeed = 8;
@@ -96,11 +96,8 @@ public class PlayerEngine : MonoBehaviour
         }
         controller.Move(velocity * Time.deltaTime);
 
-        //Health
-        if(life == 0)
-        {
-            SceneManager.LoadScene("GameOver");
-        }
+   
+    
     }
 
 }

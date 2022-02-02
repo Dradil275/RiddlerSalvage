@@ -11,15 +11,20 @@ public class Playerhealth : MonoBehaviour
     [SerializeField] private Image healthImage;
     [SerializeField] private int Damage;
     [SerializeField] private int HalfDamage;
-
+    public int HP;
     //sound
     public AudioSource audioSource;
     public AudioClip Hurt;
 
+    private void Start()
+    {
+        HP = 5;
+    }
     public void TakeDamage()
     {
         playerHealth -= Damage;
         UpdateHealth();
+       
     }
 
     public void UpdateHealth()
@@ -34,9 +39,9 @@ public class Playerhealth : MonoBehaviour
     }
     private void Update()
     {
-        if(playerHealth <= 0)
+        if(HP <= 0)
         {
-
+            SceneManager.LoadScene("GameOver");
         }
     }
 

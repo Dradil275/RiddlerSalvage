@@ -30,20 +30,17 @@ public class ColorAbility : MonoBehaviour
     public AudioClip Natarz7;
     public AudioClip TwinBells;
     public AudioSource audioSource;
+    public AudioClip TestSubject;
 
-    //Health aid
-    public GameObject life;
-    private PlayerEngine int_life;
 
     void Start()
     {
         isSolved = false;
         maxDistance = 30f;
         originalCrystalMat = WandCrystal.GetComponent<MeshRenderer>().material;
-
-        //Health aid
-        int_life = life.GetComponent<PlayerEngine>();
-        int_life.life = 5;
+        audioSource.PlayOneShot(TestSubject);
+        
+        
     }
 
 
@@ -91,12 +88,18 @@ public class ColorAbility : MonoBehaviour
                         newMaterial = Grey;
                         isSolved = true;
                     }
-                    else Health.GetComponent<Playerhealth>().TakeDamage();
+                    else
+                    {
+                        Health.GetComponent<Playerhealth>().TakeDamage();
+                        Health.GetComponent<Playerhealth>().HP--;
+
+                    }
                     
                 }
                 if (hit.collider.tag == "FinalButton")
                     {
-                    SceneManager.LoadScene("GameOver");
+                      
+                      SceneManager.LoadScene("Victory");
                     
                     }
 

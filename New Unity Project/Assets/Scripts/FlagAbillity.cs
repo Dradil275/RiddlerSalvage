@@ -27,9 +27,7 @@ public class FlagAbillity : MonoBehaviour
     public GameObject isAbillity;
     private ColorAbility ca;
 
-    //Health aid
-    public GameObject life;
-    private PlayerEngine int_life;
+
 
     //sound
     public AudioSource audioSource;
@@ -42,9 +40,7 @@ public class FlagAbillity : MonoBehaviour
         maxDistance = 30f;
         originalCrystalMat = WandCrystal.GetComponent<MeshRenderer>().material;
 
-        //Health aid
-        int_life = life.GetComponent<PlayerEngine>();
-        int_life.life = 5;
+  
 
     }
 
@@ -94,7 +90,11 @@ public class FlagAbillity : MonoBehaviour
                         WandCrystal.GetComponent<MeshRenderer>().material = originalCrystalMat;
 
                     }
-                    else Health.GetComponent<Playerhealth>().TakeDamage();
+                    else
+                    {
+                        Health.GetComponent<Playerhealth>().TakeDamage();
+                        Health.GetComponent<Playerhealth>().HP--;
+                    }
                 }
                
         

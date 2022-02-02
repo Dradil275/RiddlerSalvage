@@ -81,7 +81,7 @@ public class MazeAbillity : MonoBehaviour
             transform.position = room1Enter.transform.position;
             isInside = true;
             Destroy(doorEnd);
-            audioSource.PlayOneShot(TwinBells);
+          
 
         }
         if (other.gameObject.tag == "DoorClose")
