@@ -61,7 +61,6 @@ public class RotaionAbility : MonoBehaviour
                     if (hit.collider.tag == "Protector")
                     {
                         audioSource.PlayOneShot(MoveStatueRight, 0.5f);
-                        Debug.Log("hit protector");
                         Protector.transform.Rotate(0, 40, 0);
                         ProtectorFacing++;
                         Debug.Log(ProtectorFacing);
@@ -95,6 +94,7 @@ public class RotaionAbility : MonoBehaviour
                         audioSource.PlayOneShot(MoveStatueLeft, 0.5f);
                         Protector.transform.Rotate(0, -40, 0);
                         ProtectorFacing--;
+                        Debug.Log(ProtectorFacing);
                     }
                     if (hit.collider.tag == "Angel")
                     {
@@ -116,7 +116,7 @@ public class RotaionAbility : MonoBehaviour
         {
             SkeletonFacing = 0;
         }
-        if (ProtectorFacing >= 9 && ProtectorFacing <= -9)
+        if (ProtectorFacing >= 9 || ProtectorFacing <= -9)
         {
             ProtectorFacing = 0;
         }

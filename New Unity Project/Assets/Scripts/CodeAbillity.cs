@@ -90,7 +90,7 @@ public class CodeAbillity : MonoBehaviour
                 
                if (CodeAnswer == "1342" && isCoding == true)
                {
-                    Debug.Log("code correct");
+                   
                     isWin = true;
                }
                 if (push.collider.tag == "Button2" && isWin == true)

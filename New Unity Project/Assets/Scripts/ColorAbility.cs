@@ -134,17 +134,7 @@ public class ColorAbility : MonoBehaviour
         {
             isRed = false;
         }
-        //if solved
 
-      
- /*       if (isGreen == true && isYellow == true && isRed == true && isSolved == false)
-        {
-            audioSource.PlayOneShot(TwinBells);
-            Destroy(Door);
-            WandCrystal.GetComponent<MeshRenderer>().material = originalCrystalMat;
-            isSolved = true;
-        }
-       */
      
     }
     //methods

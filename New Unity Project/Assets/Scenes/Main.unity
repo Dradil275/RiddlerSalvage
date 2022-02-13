@@ -34903,7 +34903,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "kick it, juggle it, hit or Dunk it.\nit's really does't metter  as long
+  m_text: "kick it, juggle it, hit or Dunk it.\nit's really doesn't matter  as long
     as you do it in \nthe correct order"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4d3128776b643e84e82442993785d2a6, type: 2}
