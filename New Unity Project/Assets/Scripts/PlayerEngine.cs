@@ -19,12 +19,6 @@ public class PlayerEngine : MonoBehaviour
     float vertical;
     Vector3 V;
     public CharacterController controller;
-    //gravity
-    public bool isGround;
-    public Transform checkground;
-    float radius;
-    public LayerMask Ground;
-    float gravity;
     Vector3 velocity;
     //Sound
     
@@ -41,8 +35,7 @@ public class PlayerEngine : MonoBehaviour
         cameraX = 0;
         movementSpeed = 8;
         controller = GetComponent<CharacterController>();
-        radius = 1;
-        gravity = -9.81f;
+      
         
     }
 
@@ -74,27 +67,7 @@ public class PlayerEngine : MonoBehaviour
         }
         controller.Move(V);
 
-        //gravity
-        if (Physics.CheckSphere(checkground.position, radius, Ground) == true)
-        {
-            isGround = true;
-        }
-        else
-        {
-            isGround = false;
-        }
-
-        if (isGround == false)
-        {
-            velocity.y += gravity * Time.deltaTime;
-        }
-        else velocity.y = 0;
-        //jump
-        if (isGround == true && Input.GetKeyDown(KeyCode.Space))
-        {
-            velocity.y += 10;
-        }
-        controller.Move(velocity * Time.deltaTime);
+        
 
    
     

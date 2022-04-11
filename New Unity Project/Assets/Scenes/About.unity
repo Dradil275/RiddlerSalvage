@@ -183,12 +183,12 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'We are two young up and coming game developers.
 
-    on th right you can
-    find the man the myth the legend Gilad Kontente
+    on the right you
+    can find the man the myth the legend Gilad Kontente
 
 
-    and on the left you will
-    find
+    and on the left you
+    will find
 
     the G.O.A.T Yonathan D Grossman
 
@@ -299,7 +299,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f5146c5aa9f5a745ac757b13d163029, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MenuMusic: {fileID: 0}
 --- !u!4 &475047576
 Transform:
   m_ObjectHideFlags: 0
